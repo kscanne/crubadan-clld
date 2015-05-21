@@ -1,4 +1,5 @@
-<%inherit file="../crubadan_clld.mako"/>
+<%inherit file="crubadan_clld.mako"/>
+<%! active_menu_item = "about" %>
 
 <%def name="sidebar()">
     <div class="well">
@@ -9,7 +10,7 @@
     </div>
 </%def>
 
-<h2>An Crúbadán - Corpus Building for Minority Languages</h2>
+<h3>About</h3>
 
 <p> Statistical techniques are a key part of most modern natural
 language processing systems.  Unfortunately, such techniques require
