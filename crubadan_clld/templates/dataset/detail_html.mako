@@ -9,7 +9,7 @@
     </div>
 </%def>
 
-<h2>An Crúbadán - Corpus Building for Minority Languages</h2>
+<h2>Welcome to the An Crúbadán project</h2>
 
 <p> Statistical techniques are a key part of most modern natural
 language processing systems.  Unfortunately, such techniques require
