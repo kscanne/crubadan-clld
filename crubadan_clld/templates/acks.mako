@@ -1,5 +1,5 @@
 <%inherit file="crubadan_clld.mako"/>
-<%! active_menu_item = "apps" %>
+<%! active_menu_item = "acks" %>
 
 <%def name="sidebar()">
     <div class="well">
