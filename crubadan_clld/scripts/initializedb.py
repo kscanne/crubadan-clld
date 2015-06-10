@@ -15,6 +15,19 @@ def main(args):
     dataset = common.Dataset(id=crubadan_clld.__name__, domain='crubadan_clld.clld.org')
     DBSession.add(dataset)
 
+    DBSession.add(models.WritingSystem(
+        id=1,
+        name='test_entry',
+        description='hello testing',
+        eng_name='Abau',
+        bcp47='aau',
+        iso6393='aau',
+        country='Papua New Guinea',
+        script='Latin',
+    ))
+
+    # DBSession.commit()
+
 
 def prime_cache(args):
     """If data needs to be denormalized for lookup, do that here.

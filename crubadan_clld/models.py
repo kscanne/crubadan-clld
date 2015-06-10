@@ -14,12 +14,20 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 from clld import interfaces
 from clld.db.meta import Base, CustomModelMixin
-#from clld.db.models.common import Language
+from clld.db.models.common import Language, IdNameDescriptionMixin
 
+from crubadan_clld.interfaces import IWritingSystem
 
 #-----------------------------------------------------------------------------
 # specialized common mapper classes
 #-----------------------------------------------------------------------------
-#@implementer(interfaces.ILanguage)
-#class crubadan_clldLanguage(CustomModelMixin, Language):
-#    pk = Column(Integer, ForeignKey('language.pk'), primary_key=True)
+
+@implementer(IWritingSystem)
+class WritingSystem(Base, IdNameDescriptionMixin):
+    # pk = Column(Integer, primary_key=True)
+    eng_name = Column(String)
+    bcp47 = Column(String)
+    iso6393 = Column(String)
+    country = Column(String)
+    script = Column(String)
+    
