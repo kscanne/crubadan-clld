@@ -11,7 +11,7 @@ class WritingSystems(DataTable):
 
     def col_defs(self):
         return [
-            Col(self, 'eng_name', sTitle='Name (English)'),
+            LinkCol(self, 'eng_name', sTitle='Name (English)'),
             Col(self, 'bcp47', sTitle='BCP-47 Code'),
             Col(self, 'iso6393', sTitle='ISO-639-3 Code'),
             Col(self, 'country', sTitle='Country'),

@@ -28,15 +28,22 @@ def fillTable(dbsession):
                 parseAdd(line,dic)
     
             dbsession.add(models.WritingSystem(
-                id = c,
-                jsondata = dic,
-                name = lang,
-                description = lang,
+                id = lang,
+                # jsondata = dic,
+                name = dic[u'name_english'],
+                description = dic[u'classification'],
+                
                 eng_name = dic[u'name_english'],
+                native_name = dic[u'name_native'],
                 bcp47 = lang,
                 iso6393 = dic[u'ISO_639-3'],
                 country = dic[u'country'],
                 script = dic[u'script'],
+                parent_ws = dic[u'parent'],
+                child_ws = dic[u'children'],
+                ling_classification = dic[u'classification'],
+                ethnologue_name = dic[u'ethnologue'],
+                glottolog_name = dic[u'glottolog'],
             ))
     
             print 'Added ' + lang + ' ...'
@@ -45,6 +52,10 @@ def fillTable(dbsession):
 def parseAdd(line,dic):
     if (line[0] != u'#'):
         (key,d,value) = line.partition(u' ')
+        if (value == 'XXX'):
+            value = '(Unknown)'
+        if (value == 'none'):
+            value = 'None'
         dic[key] = value
 
 def main(args):

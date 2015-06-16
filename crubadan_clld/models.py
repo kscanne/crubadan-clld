@@ -26,8 +26,14 @@ from crubadan_clld.interfaces import IWritingSystem
 class WritingSystem(Base, IdNameDescriptionMixin):
     # pk = Column(Integer, primary_key=True)
     eng_name = Column(String)
+    native_name = Column(String)
     bcp47 = Column(String)
     iso6393 = Column(String)
     country = Column(String)
     script = Column(String)
+    parent_ws = Column(String)
+    child_ws = Column(String)
+    ling_classification = Column(String)
+    ethnologue_name = Column(String)
+    glottolog_name = Column(String)
     
