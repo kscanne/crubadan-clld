@@ -52,11 +52,13 @@ def fillTable(dbsession):
 def parseAdd(line,dic):
     if (line[0] != u'#'):
         (key,d,value) = line.partition(u' ')
-        if (value == 'XXX'):
-            value = '(Unknown)'
-        if (value == 'none'):
-            value = 'None'
-        dic[key] = value
+        if (value == u"XXX\n"):
+            dic[key] = u"(Unknown)\n"
+        elif ((value == u"none\n") or (value == u"\n")):
+            dic[key] = u"None\n"
+        else:
+            # print '[' + key + '] [' + value + ']'
+            dic[key] = value
 
 def main(args):
     data = Data()
