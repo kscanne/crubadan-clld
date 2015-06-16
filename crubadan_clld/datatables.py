@@ -3,6 +3,7 @@ from clld.web.datatables.base import (
 )
 
 from crubadan_clld.models import WritingSystem
+        
 
 class WritingSystems(DataTable):
     def __init__(self, *args, **kw):
@@ -18,7 +19,7 @@ class WritingSystems(DataTable):
         ]
 
     def get_options(self):
-        return {"iDisplayLength": 200}
+        return {"iDisplayLength": 50}
 
 def includeme(config):
     # pass
