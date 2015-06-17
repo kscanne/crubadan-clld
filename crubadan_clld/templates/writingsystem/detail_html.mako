@@ -5,6 +5,7 @@
 
 <h2>${ctx.eng_name} (${ctx.bcp47})</h2>
 
+
 <h4>Corpus Statistics</h3>
 
 ${util.dl_table(('Documents Crawled', '???'),
@@ -20,7 +21,8 @@ ${util.dl_table(('BCP-47 Code', ctx.bcp47),
                 ('Script', ctx.script),
 		('Parent Writing System', ctx.parent_ws),
 		('Child Writing Systems', ctx.child_ws),
-		('Linguistic Classification', ctx.ling_classification))}
+		('Linguistic Classification', ctx.ling_classification),
+		('Files', ctx.files[ctx.id].relpath()),)}
 
 <h4>Linguistic Resources</h3>
 <p>Ethnologue</p>

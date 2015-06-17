@@ -20,14 +20,24 @@ def fillTable(dbsession):
     c = 1
     for lang in langs:
         fname = rootDataDir + '/' + lang + '/' + 'EOLAS'
+        trigfname = rootDataDir + '/' + lang + '/' + 'SAMPSENTS'
         if (os.path.isfile(fname)):
             f = codecs.open(fname, encoding='utf-8')
             dic = {}
     
             for line in f:
                 parseAdd(line,dic)
-    
-            dbsession.add(models.WritingSystem(
+
+            dfile = models.WritingSystem_files(
+                pk = lang,
+                id = lang,
+                name = lang,
+                description = lang,
+                # relpath = 'dist' + '/' + lang + '.zip'
+            )
+                          
+            ws = models.WritingSystem(
+                pk = lang,
                 id = lang,
                 # jsondata = dic,
                 name = dic[u'name_english'],
@@ -44,7 +54,12 @@ def fillTable(dbsession):
                 ling_classification = dic[u'classification'],
                 ethnologue_name = dic[u'ethnologue'],
                 glottolog_name = dic[u'glottolog'],
-            ))
+            )
+
+            dfile.object = ws
+            
+            dbsession.add(dfile)
+            dbsession.add(ws)
     
             print 'Added ' + lang + ' ...'
             c += 1

@@ -14,17 +14,27 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 from clld import interfaces
 from clld.db.meta import Base, CustomModelMixin
-from clld.db.models.common import Language, IdNameDescriptionMixin
+from clld.db.models.common import (
+    Language,
+    IdNameDescriptionMixin,
+    FilesMixin,
+    HasFilesMixin,
+)
 
-from crubadan_clld.interfaces import IWritingSystem
+from crubadan_clld.interfaces import (
+    IWritingSystem,
+    IWritingSystem_files,
+)
+
+import os
 
 #-----------------------------------------------------------------------------
 # specialized common mapper classes
 #-----------------------------------------------------------------------------
 
 @implementer(IWritingSystem)
-class WritingSystem(Base, IdNameDescriptionMixin):
-    # pk = Column(Integer, primary_key=True)
+class WritingSystem(Base, IdNameDescriptionMixin, HasFilesMixin):
+    pk = Column(String, primary_key=True)
     eng_name = Column(String)
     native_name = Column(String)
     bcp47 = Column(String)
@@ -36,4 +46,10 @@ class WritingSystem(Base, IdNameDescriptionMixin):
     ling_classification = Column(String)
     ethnologue_name = Column(String)
     glottolog_name = Column(String)
+
+@implementer(IWritingSystem_files)
+class WritingSystem_files(Base, FilesMixin):
+    pk = Column(String, primary_key=True)
     
+    def relpath(self):
+        return os.path.join('dist', str(self.id) + '.zip')

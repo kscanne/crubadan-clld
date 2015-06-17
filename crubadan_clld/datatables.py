@@ -16,6 +16,7 @@ class WritingSystems(DataTable):
             Col(self, 'iso6393', sTitle='ISO-639-3 Code'),
             Col(self, 'country', sTitle='Country'),
             Col(self, 'script', sTitle='Script'),
+            # Col(self, 'files', sTitle='Files'),
         ]
 
     def get_options(self):
