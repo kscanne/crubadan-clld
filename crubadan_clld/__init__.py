@@ -22,14 +22,25 @@ def main(global_config, **settings):
         with_index=True,
     )
 
+    # config.register_resource(
+    #     'writingsystem_files',
+    #     models.WritingSystem_files,
+    #     interfaces.IWritingSystem_files,
+    #     with_index=True,
+    # )
+
     config.register_menu(
         ('dataset', partial(menu_item, 'dataset', label='Home')),
         ('writingsystems', partial(menu_item, 'writingsystems',
                                     label='Writing Systems')),
+        # ('writingsystem_filess', partial(menu_item, 'writingsystem_filess',
+        #                                  label='Writing System Files')),
         ('about', partial(menu_item, 'about', label='About')),
         ('apps', partial(menu_item, 'apps', label='Applications')),
         ('acks', partial(menu_item, 'acks', label='Acknowledgements'))
     )
+
+    config.add_static_view('downloads', 'crubadan_clld:downloads/')
 
     config.add_route_and_view(
         'apps',

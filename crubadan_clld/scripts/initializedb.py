@@ -10,10 +10,11 @@ from crubadan_clld import models
 
 import os
 import codecs
+from path import Path
 
 rootDataDir = '/data/crubadan'
-
-
+rootClldDir = '/data/crubadan-clld'
+rootFilePath = Path('/data/crubadan-clld')
 
 def fillTable(dbsession):
     langs = os.listdir(rootDataDir)
@@ -23,6 +24,7 @@ def fillTable(dbsession):
         trigfname = rootDataDir + '/' + lang + '/' + 'SAMPSENTS'
         if (os.path.isfile(fname)):
             f = codecs.open(fname, encoding='utf-8')
+            t = codecs.open(trigfname, encoding='utf-8')
             dic = {}
     
             for line in f:
@@ -35,6 +37,8 @@ def fillTable(dbsession):
                 description = lang,
                 # relpath = 'dist' + '/' + lang + '.zip'
             )
+
+            # dfile.create(None, t.read())
                           
             ws = models.WritingSystem(
                 pk = lang,

@@ -52,4 +52,4 @@ class WritingSystem_files(Base, FilesMixin):
     pk = Column(String, primary_key=True)
     
     def relpath(self):
-        return os.path.join('dist', str(self.id) + '.zip')
+        return str(self.id) + '.zip'
