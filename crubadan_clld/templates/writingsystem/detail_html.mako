@@ -5,7 +5,7 @@
 
 <h2>${ctx.eng_name} (${ctx.bcp47})</h2>
 
-<a href="${request.static_url('crubadan_clld:downloads/test.txt')}">download</a>
+<a href="${request.static_url('/data/crubadan-clld/files/test.txt')}">download</a>
 
 <h4>Corpus Statistics</h3>
 

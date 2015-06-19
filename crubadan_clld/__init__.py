@@ -40,8 +40,6 @@ def main(global_config, **settings):
         ('acks', partial(menu_item, 'acks', label='Acknowledgements'))
     )
 
-    config.add_static_view('downloads', 'crubadan_clld:downloads/')
-
     config.add_route_and_view(
         'apps',
         '/applications',
