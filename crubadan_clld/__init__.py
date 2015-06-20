@@ -32,7 +32,7 @@ def main(global_config, **settings):
     config.register_menu(
         ('dataset', partial(menu_item, 'dataset', label='Home')),
         ('writingsystems', partial(menu_item, 'writingsystems',
-                                    label='Writing Systems')),
+                                    label='Downloads')),
         # ('writingsystem_filess', partial(menu_item, 'writingsystem_filess',
         #                                  label='Writing System Files')),
         ('apps', partial(menu_item, 'apps', label='Applications')),
