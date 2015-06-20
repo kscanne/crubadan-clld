@@ -12,9 +12,28 @@ import os
 import codecs
 from path import Path
 
+
+# These are the files that will be lifted from the
+# root crubadan directory and packaged into zip
+# files for each language.
+#
+# format: [(NAME_IN_DATA_DIR, NAME_IN_ZIP_FILE)]
+# 
+# The files that go in the zip file automatically
+# get the relevant language code prepended
+# (e.g. "eng-testdata.txt")
+#
+packageFiles = [('TESTDATA', 'testdata.txt'),
+                ('SOMETHING', 'something.txt')]
+
 rootDataDir = '/data/crubadan'
 rootClldDir = '/data/crubadan-clld'
-rootFilePath = Path('/data/crubadan-clld')
+
+
+def prepSysDirs():
+    os.system('rm -rf /data/crubadan-clld/*')
+    # os.system('mkdir /data/crubadan-clld')
+    os.system('mkdir /data/crubadan-clld/files')
 
 def fillTable(dbsession):
     langs = os.listdir(rootDataDir)
@@ -35,10 +54,18 @@ def fillTable(dbsession):
                 id = lang,
                 name = lang,
                 description = lang,
-                # relpath = 'dist' + '/' + lang + '.zip'
             )
 
-            # dfile.create(None, t.read())
+            z = lang + '.zip'
+            os.system('mkdir ' + lang)
+            os.system('cp doc/zip_file_LICENSE ' + lang + '/LICENSE')
+            for (sysFile,zipFile) in packageFiles:
+                qSysFile = rootDataDir + '/' + lang + '/' + sysFile
+                qZipFile = lang + '/' + lang + '-' + zipFile
+                os.system('cp ' + qSysFile + ' ' + qZipFile)
+            os.system('zip -qr ' + z + ' ' + lang)
+            os.system('mv ' + z + ' ' + rootClldDir + '/files/' + z)
+            os.system('rm -r ' + lang)
                           
             ws = models.WritingSystem(
                 pk = lang,
@@ -109,5 +136,6 @@ def prime_cache(args):
 
 
 if __name__ == '__main__':
+    prepSysDirs()
     initializedb(create=main, prime_cache=prime_cache)
     sys.exit(0)

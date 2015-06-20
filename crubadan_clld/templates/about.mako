@@ -3,9 +3,9 @@
 
 <%def name="sidebar()">
     <div class="well">
-        <h3>Latest Additions</h3>
+        <h3>Sidebar...</h3>
         <p>
-            (List newest writing systems here...)
+            ...
         </p>
     </div>
 </%def>

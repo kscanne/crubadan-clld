@@ -2,9 +2,11 @@
 
 <%def name="sidebar()">
     <div class="well">
-        <h3>Latest Additions</h3>
+        <h3>What should go here?</h3>
         <p>
-            (List newest writing systems here...)
+            Maybe a map view of all the langauges, or a simplified
+	    datatable view, or a list of most-recently-added
+	    languages?
         </p>
     </div>
 </%def>

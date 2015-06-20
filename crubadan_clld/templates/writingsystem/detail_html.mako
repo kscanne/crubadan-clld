@@ -3,9 +3,7 @@
 <%! active_menu_item = "writingsystems" %>
 
 
-<h2>${ctx.eng_name} (${ctx.bcp47})</h2>
-
-<a href="${request.static_url('/data/crubadan-clld/files/test.txt')}">download</a>
+<h2>${ctx.eng_name} (${ctx.id}): <a href="${request.static_url('/data/crubadan-clld/files/' + ctx.id + '.zip')}">${ctx.id}.zip</a></h2>
 
 <h4>Corpus Statistics</h3>
 
@@ -31,4 +29,4 @@ ${util.dl_table(('BCP-47 Code', ctx.bcp47),
 <p>OLAC</p>
 
 <h4>Primary Texts Online</h3>
-<p>...</p>
+<p>???</p>
