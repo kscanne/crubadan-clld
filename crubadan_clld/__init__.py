@@ -35,7 +35,6 @@ def main(global_config, **settings):
                                     label='Writing Systems')),
         # ('writingsystem_filess', partial(menu_item, 'writingsystem_filess',
         #                                  label='Writing System Files')),
-        ('about', partial(menu_item, 'about', label='About')),
         ('apps', partial(menu_item, 'apps', label='Applications')),
         ('acks', partial(menu_item, 'acks', label='Acknowledgements'))
     )

@@ -2,12 +2,21 @@
 
 <%def name="sidebar()">
     <div class="well">
-        <h3>What should go here?</h3>
-        <p>
-            Maybe a map view of all the langauges, or a simplified
-	    datatable view, or a list of most-recently-added
-	    languages?
-        </p>
+
+        ##
+        ## Replace the header and twitter widget link here with yours:
+	##
+
+        <h3>Put whatever title seems appropriate here...</h3>
+
+        <a class="twitter-timeline"  href="https://twitter.com/RoboNickBot" data-widget-id="612369932140027904">Tweets by @RoboNickBot</a>
+
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+        ##
+	##
+	##
+
     </div>
 </%def>
 
