@@ -20,6 +20,8 @@
     </div>
 </%def>
 
+<div style="max-width: 50em;">
+
 <h2>Welcome to the An Crúbadán project</h2>
 
 <p> Statistical techniques are a key part of most modern natural
@@ -65,3 +67,5 @@ pronounced - you can now <a
 href="http://borel.slu.edu/crubadan/crubadan.mp3">listen to the
 word</a> as it's spoken by the wonderful Irish speech synthesizer <a
 href="http://www.abair.tcd.ie/index.php">abair.ie</a>.  </p>
+
+</div>

@@ -1,14 +1,7 @@
 <%inherit file="crubadan_clld.mako"/>
 <%! active_menu_item = "apps" %>
 
-<%def name="sidebar()">
-    <div class="well">
-        <h3>Sidebar...</h3>
-        <p>
-            ...
-        </p>
-    </div>
-</%def>
+<div style="max-width: 50em;">
 
 <h3>Applications</h3>
 
@@ -262,3 +255,5 @@ Please contact me (kscanne at gmail dot com)
 if you are interested in applying
 these techniques to a new language.
 </p>
+
+</div>
