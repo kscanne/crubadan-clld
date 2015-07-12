@@ -121,12 +121,12 @@ def main(args):
     dataset = common.Dataset(
         id= u'An Crúbadán',
         name= u'An Crúbadán',
-        publisher_name="???",
-        publisher_place="???",
-        publisher_url="???",
-        description="???",
-        contact="???",
-        license='http://creativecommons.org/licenses/by/4.0/', # ???
+        publisher_name="Saint Louis University",
+        publisher_place="Saint Louis, USA",
+        publisher_url="http://www.slu.edu/",
+        description="Linguistic datasets for over 2000 languages created from web-crawled text corpora",
+        contact="kscanne@gmail.com",
+        license='http://creativecommons.org/licenses/by/4.0/',
         jsondata={
             'license_icon': 'https://licensebuttons.net/l/by/4.0/88x31.png',
             'license_name': 'Creative Commons Attribution 4.0 International License',
