@@ -11,31 +11,24 @@ import crubadan_clld
 from crubadan_clld import models
 
 import os
+import sys
 import codecs
 from path import Path
 
-
-# These are the files that will be lifted from the
-# root crubadan directory and packaged into zip
-# files for each language.
-#
-# format: [(NAME_IN_DATA_DIR, NAME_IN_ZIP_FILE)]
-# 
-# The files that go in the zip file automatically
-# get the relevant language code prepended
-# (e.g. "eng-testdata.txt")
-#
-packageFiles = [('TESTDATA', 'testdata.txt'),
-                ('SOMETHING', 'something.txt')]
 
 rootDataDir = '/data/crubadan'
 rootClldDir = '/data/crubadan-clld'
 
 
 def prepSysDirs():
-    # os.system('rm -rf /data/crubadan-clld/*')
-    os.system('if [ ! -d "' + rootClldDir + '" ]; then mkdir ' + rootClldDir + '; fi')
-    os.system('if [ ! -d "' + rootClldDir + '/files" ]; then mkdir ' + rootClldDir + '/files; fi')
+    if (not os.path.isdir(rootClldDir)):
+        print "You must create " + rootClldDir + " before building the database."
+        sys.exit(1)
+    if (os.path.exists(rootClldDir + '/clld-db.sqlite')):
+        print "Replacing previous clld-db.sqlite"
+        os.remove(rootClldDir + '/clld-db.sqlite')
+
+
 
 def fillTable(dbsession):
     langs = os.listdir(rootDataDir)
