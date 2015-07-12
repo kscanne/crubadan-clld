@@ -42,9 +42,10 @@
 </%def>
 
 <%def name="lang_links2(lang_string)">
-    % for lang in lang_string.split():
+    % for lang in lang_string.split()[:-1]:
         <a href="${lang}">${lang}</a>,
     % endfor
+        <a href="${lang_string.split()[-1]}">${lang_string.split()[-1]}</a>
 </%def>
 
 <style type="text/css">
