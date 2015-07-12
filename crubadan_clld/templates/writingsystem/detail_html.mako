@@ -89,7 +89,14 @@ ${ctx.id}.zip
     <tr><td> Language Name (Autonym):   </td><td> ${ctx.jsondata[u'name_native']}         </td></tr>
     <tr><td> ISO 639-3 Code:            </td><td> ${ctx.jsondata[u'ISO_639-3']}           </td></tr>
     <tr><td> Country:                   </td><td> ${ctx.jsondata[u'country']}             </td></tr>
-    <tr><td> Script:                    </td><td> ${ctx.jsondata[u'script']}              </td></tr>
+    <tr><td> Script:                    </td><td>
+    
+        <a href="http://scriptsource.org/scr/${ctx.jsondata[u'script']}">
+	    ${ctx.jsondata[u'script']}
+        </a>
+
+                                                                                          </td></tr>
+    
     <tr><td> Parent Writing System:     </td><td> ${opt_lang(ctx.jsondata[u'parent'])}    </td></tr>
     <tr><td> Child Writing Systems:     </td><td> ${opt_lang(ctx.jsondata[u'children'])}  </td></tr>
     <tr><td> Linguistic Classification: </td><td> ${ctx.jsondata[u'classification']}      </td></tr>
