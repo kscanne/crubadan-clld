@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 import sys
 
@@ -67,15 +69,15 @@ def fillTable(dbsession):
 
             # Create the dist zipfile and store it in the right place
             z = lang + '.zip'
-            os.system('mkdir ' + lang)
-            os.system('cp doc/zip_file_LICENSE ' + lang + '/LICENSE')
-            for (sysFile,zipFile) in packageFiles:
-                qSysFile = rootDataDir + '/' + lang + '/' + sysFile
-                qZipFile = lang + '/' + lang + '-' + zipFile
-                os.system('cp ' + qSysFile + ' ' + qZipFile)
-            os.system('zip -qr ' + z + ' ' + lang)
-            os.system('mv ' + z + ' ' + rootClldDir + '/files/' + z)
-            os.system('rm -r ' + lang)
+            # os.system('mkdir ' + lang)
+            # os.system('cp doc/zip_file_LICENSE ' + lang + '/LICENSE')
+            # for (sysFile,zipFile) in packageFiles:
+            #     qSysFile = rootDataDir + '/' + lang + '/' + sysFile
+            #     qZipFile = lang + '/' + lang + '-' + zipFile
+            #     os.system('cp ' + qSysFile + ' ' + qZipFile)
+            # os.system('zip -qr ' + z + ' ' + lang)
+            # os.system('mv ' + z + ' ' + rootClldDir + '/files/' + z)
+            # os.system('rm -r ' + lang)
 
             # Fill the database model
             ws = models.WritingSystem(
@@ -99,26 +101,6 @@ def fillTable(dbsession):
                 ling_classification = dic[u'classification'],
                 ethnologue_name = dic[u'ethnologue'],
                 glottolog_name = dic[u'glottolog'],
-
-                # Secondary data file ("metadata")
-                #
-                # I realize that this could probably be automated in
-                # some way.. please don't laugh
-                ## m_zip_size = dic[u'm_zip_size'],
-                ## m_documents_crawled = dic[u'm_documents_crawled'],
-                ## m_words = dic[u'm_words'],
-                ## m_ethnologue_link = dic[u'm_ethnologue_link'],
-                ## m_glottolog_link = dic[u'm_glottolog_link'],
-                ## m_olac_link = dic[u'm_olac_link'],
-                ## m_phoible_link = dic[u'm_phoible_link'],
-                ## m_unesco_link = dic[u'm_unesco_link'],
-                ## m_tweets_link = dic[u'm_tweets_link'],
-                ## m_blogs_link = dic[u'm_blogs_link'],
-                ## m_wikipedia_link = dic[u'm_wikipedia_link'],
-                ## m_bible_link = dic[u'm_bible_link'],
-                ## m_udhr_link = dic[u'm_udhr_link'],
-                ## m_jw_link = dic[u'm_jw_link'],
-                ## m_sample_link = dic[u'm_sample_link'],
             )
 
             dfile.object = ws
@@ -143,24 +125,56 @@ def parseAdd(line,dic,prefix):
 def main(args):
     data = Data()
 
-    dataset = common.Dataset(id=crubadan_clld.__name__, domain='crubadan_clld.clld.org')
+    dataset = common.Dataset(
+        id= u'An Crúbadán',
+        name= u'An Crúbadán',
+        publisher_name="???",
+        publisher_place="???",
+        publisher_url="???",
+        description="???",
+        contact="???",
+        license='http://creativecommons.org/licenses/by/4.0/', # ???
+        jsondata={
+            'license_icon': 'https://licensebuttons.net/l/by/4.0/88x31.png',
+            'license_name': 'Creative Commons Attribution 4.0 International License',
+            },
+        domain='crubadan.org',
+        )
+
     DBSession.add(dataset)
+    DBSession.flush()
+
+    editor = data.add(common.Contributor, "Kevin Scannell", id="Kevin Scannell", name="Kevin Scannell", email="kscanne@gmail.com")
+    common.Editor(dataset=dataset, contributor=editor, ord=0)
+    DBSession.flush()
+    
+
+## An example dataset declaration from http://sails.clld.org/
+##
+# 
+#  dataset = common.Dataset(
+#      id="SAILS",
+#      name='SAILS Online',
+#      publisher_name="Max Planck Institute for Evolutionary Anthropology",
+#      publisher_place="Leipzig",
+#      publisher_url="http://www.eva.mpg.de",
+#      description="Dataset on Typological Features for South American Languages, collected 2009-2013 in the Traces of Contact Project (ERC Advanced Grant 230310) awarded to Pieter Muysken, Radboud Universiteit, Nijmegen, the Netherlands.",
+#      domain='sails.clld.org',
+#      published=date(2014, 2, 20),
+#      contact='harald.hammarstroem@mpi.nl',
+#      license='http://creativecommons.org/licenses/by-nc-nd/2.0/de/deed.en',
+#      jsondata={
+#          'license_icon': 'http://wals.info/static/images/cc_by_nc_nd.png',
+#          'license_name': 'Creative Commons Attribution-NonCommercial-NoDerivs 2.0 Germany'})
+#  DBSession.add(dataset)
+#  DBSession.flush()
+# 
+#  editor = data.add(common.Contributor, "Harald Hammarstrom", id="Harald Hammarstrom", name="Harald Hammarstrom", email = "harald.hammarstroem@mpi.nl")
+#  common.Editor(dataset=dataset, contributor=editor, ord=0)
+#  DBSession.flush()
+#  
 
     fillTable(DBSession)
-
-    # DBSession.add(models.WritingSystem(
-    #     id=1,
-    #     name='test_entry',
-    #     description='hello testing',
-    #     eng_name='Abau',
-    #     bcp47='aau',
-    #     iso6393='aau',
-    #     country='Papua New Guinea',
-    #     script='Latin',
-    # ))
-
-    # DBSession.commit()
-
 
 def prime_cache(args):
     """If data needs to be denormalized for lookup, do that here.
