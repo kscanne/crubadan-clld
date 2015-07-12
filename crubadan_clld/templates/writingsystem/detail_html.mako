@@ -22,6 +22,45 @@
     % endif
 </%def>
 
+<%def name="opt_lang(lang)">
+    % if (lang != u'None\n'):
+        ${lang_links2(lang)}
+    % else:
+        ${lang}
+    % endif
+</%def>
+
+<%def name="lang_links(lang_string)">
+    <%
+        out_string = '<span>'
+        for lang in lang_string.split():
+	    link = ' ' + '<a href="' + lang + '">' + lang + '</a>'
+	    out_string += link
+	out_string += ' </span>'
+    %>
+    ${out_string}
+</%def>
+
+<%def name="lang_links2(lang_string)">
+    % for lang in lang_string.split():
+        <a href="${lang}">${lang}</a>,
+    % endfor
+</%def>
+
+<style type="text/css">
+table.metadata {
+    max-width: 50em;
+}
+table.metadata tr {
+    border-top: 1px solid #DCC
+}
+table.metadata td {
+    padding-left: 1em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+</style>
+
 <h2>
 
 ${ctx.jsondata[u'name_english']}
@@ -36,31 +75,33 @@ ${ctx.id}.zip
 
 <h4>Corpus Statistics</h3>
 
-${util.dl_table( ( 'Documents Crawled' , ctx.jsondata[u'm_documents_crawled'] ) ,
-                 ( 'Words'             , ctx.jsondata[u'm_words']             ) )}
+<table class="metadata">
+    <tr><td> Documents Crawled          </td><td> ${ctx.jsondata[u'm_documents_crawled']} </td></tr>
+    <tr><td> Words                      </td><td> ${ctx.jsondata[u'm_words']}             </td></tr>
+</table>
 
 <h4>Writing System Attributes</h3>
 
-${util.dl_table(('BCP-47 Code'               , ctx.jsondata[u'lang']),
-                ('Language Name (English)'   , ctx.jsondata[u'name_english']),
-		('Language Name (Autonym)'   , ctx.jsondata[u'name_native']),
-		('ISO 639-3 Code'            , ctx.jsondata[u'ISO_639-3']),
-                ('Country'                   , ctx.jsondata[u'country']),
-                ('Script'                    , ctx.jsondata[u'script']),
-		('Parent Writing System'     , ctx.jsondata[u'parent']),
-		('Child Writing Systems'     , ctx.jsondata[u'children']),
-		('Linguistic Classification' , ctx.jsondata[u'classification']),
-	       )}
-
+<table class="metadata">
+    <tr><td> BCP-47 Code:               </td><td> ${ctx.jsondata[u'lang']}                </td></tr>
+    <tr><td> Language Name (English):   </td><td> ${ctx.jsondata[u'name_english']}        </td></tr>
+    <tr><td> Language Name (Autonym):   </td><td> ${ctx.jsondata[u'name_native']}         </td></tr>
+    <tr><td> ISO 639-3 Code:            </td><td> ${ctx.jsondata[u'ISO_639-3']}           </td></tr>
+    <tr><td> Country:                   </td><td> ${ctx.jsondata[u'country']}             </td></tr>
+    <tr><td> Script:                    </td><td> ${ctx.jsondata[u'script']}              </td></tr>
+    <tr><td> Parent Writing System:     </td><td> ${opt_lang(ctx.jsondata[u'parent'])}    </td></tr>
+    <tr><td> Child Writing Systems:     </td><td> ${opt_lang(ctx.jsondata[u'children'])}  </td></tr>
+    <tr><td> Linguistic Classification: </td><td> ${ctx.jsondata[u'classification']}      </td></tr>
+</table>
 
 <h4>Linguistic Resources</h3>
 
-${opt_link( u'm_sample_link'      , u'Wikipedia Article'  )}
-${opt_link( u'm_ethnologue_link'  , u'Ethnologue Entry'   )}
-${opt_link( u'm_glottolog_link'   , u'Glottolog Entry'    )}
-${opt_link( u'm_olac_link'        , u'OLAC Entry'         )}
-${opt_link( u'm_phoible_link'     , u'Phoible Entry'      )}
-${opt_link( u'm_unesco_link'      , u'UNESCO Entry'       )}
+${opt_link( u'm_sample_link'     , u'Wikipedia Article'  )}
+${opt_link( u'm_ethnologue_link' , u'Ethnologue Entry'   )}
+${opt_link( u'm_glottolog_link'  , u'Glottolog Entry'    )}
+${opt_link( u'm_olac_link'       , u'OLAC Entry'         )}
+${opt_link( u'm_phoible_link'    , u'Phoible Entry'      )}
+${opt_link( u'm_unesco_link'     , u'UNESCO Entry'       )}
 
 
 <h4>Primary Texts Online</h3>
