@@ -2,6 +2,6 @@
 <%! active_menu_item = "writingsystems" %>
 
 
-<h2>${_('Writing Systems')}</h2>
+<h3>${_('Writing Systems')}</h3>
 
 ${ctx.render()}
