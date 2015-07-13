@@ -14,7 +14,23 @@ def main(global_config, **settings):
     config.include('crubadan_clld.datatables')
     config.include('crubadan_clld.adapters')
 
+    # Set up redundant route to dist files for backwards-compatibility
+    config.add_static_view('dist', '/data/crubadan-clld/files')
 
+    # Set up route for OLAC xml file
+    # This route overrides clld's builtin 'olac' route
+    config.commit() # (bypasses the override error)
+    config.add_route_and_view('olac', '/olac.xml', views.olac_xml)
+
+
+    # config.add_route_and_view(
+    #     'olac',
+    #     '/olac.xml',
+    #     views.olac,
+    #     # renderer='apps.mako'
+    # )
+
+    
     config.register_resource(
         'writingsystem',
         models.WritingSystem,
