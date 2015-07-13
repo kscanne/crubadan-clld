@@ -28,9 +28,9 @@ limited computational resources.  Initially it was deployed for the
 six Celtic languages, but over the last ten years I've added support
 for more than 2000 languages from all parts of the world.  You can
 information about all of these languages and downloadable datasets on
-the <a href="writing_systems.html">Downloads Page</a>.  There is also
+the <a href="writingsystems">Downloads Page</a>.  There is also
 information on various tools that have been developed using these
-corpora on the <a href="applications.html">Applications Page</a>.
+corpora on the <a href="applications">Applications Page</a>.
 </p>
 
 <p> I gave a presentation on this work at the <a
