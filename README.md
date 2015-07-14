@@ -121,7 +121,7 @@ before starting again.
 
     ~/crubadan_clld $ ./service-control stop
     ~/crubadan_clld $ git pull
-    ~/crubadan_clld $ rm -rf .venv
+    ~/crubadan_clld $ rm -r .venv
     ~/crubadan_clld $ ./sandbox-init
     ~/crubadan_clld $ ./service-control build
     ~/crubadan_clld $ ./service-control start
