@@ -1,11 +1,28 @@
 <%inherit file="../crubadan_clld.mako"/>
 
+<style type="text/css">
+div.make-small * {
+
+    /* ####################################### */
+    /* Edit this value to change the height of */
+    /* the twitter feed:                       */
+
+       max-height: 30em;
+
+    /* ####################################### */
+
+}
+</style>
+
+
 <%def name="sidebar()">
     <div class="well">
+    <div class="make-small">
 
 		<a class="twitter-timeline"  href="https://twitter.com/IndigenousTweet" data-widget-id="416948003417505792">News from @IndigenousTweet</a>
 		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-          
+
+    </div>
     </div>
 </%def>
 
