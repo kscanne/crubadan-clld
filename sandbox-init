@@ -1,0 +1,49 @@
+#!/bin/sh
+
+if [ ! -f ./script-vars ]; then
+    echo "You're probably in the wrong directory."
+fi
+
+. ./script-vars
+
+function banner {
+    echo ">>>"
+    echo ">>> $1"
+    echo ">>>"
+}
+
+function helptext {
+    echo "This script sets up the environment needed for"
+    echo "the $appname server to operate.  To succeed, it"
+    echo "needs these programs installed:"
+    for dep in $deps; do
+	echo "  - $dep"
+    done
+    echo "Usage: $1 [--help]"
+    echo "(there are no other options are arguments)"
+}
+
+function check_dep {
+    which $1 || ( echo "Missing dependency: $1"; exit 1 )
+}
+
+case $1 in
+    "-h" | "--help" | "--usage" ) helptext $0; exit 1;;
+esac
+
+if [ -d $sandbox ]
+then
+    echo "You must remove the pre-existing sandbox ($sandbox)"
+    exit 1
+fi
+
+banner "Creating sandboxed python installation in $sandbox ..."
+virtualenv --python=$python $sandbox || exit 1
+
+banner "Installing clld package into sandbox ..."
+$sandbox/bin/easy_install clld || exit 1
+
+banner "Installing $appname and deps into sandbox ..."
+$vbin/python setup.py develop || exit 1
+
+banner "All done."
