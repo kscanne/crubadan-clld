@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# Manage server processes!
+
+if [ ! -f ./script-vars ]; then
+    echo "You're probably in the wrong directory."
+fi
+
+. ./script-vars
+
+function helptext {
+    echo "This script controls the $appname services."
+    echo 'You must run this script IN PLACE!'
+    echo 
+    echo "Usage: $1 [build | start | stop]"
+    echo "       build: build (or rebuild) the database"
+    echo "       start: start server processes"
+    echo "       stop:  stop server processes"
+}
+
+function for_ports {
+    for port in $ports; do
+        $1 $port || exit 1
+    done
+
+    echo ""
+    echo "Success? 'pserve' doesn't always know when it's failed, so check"
+    echo "to make sure these processes are appropriately up or down:"
+
+    status=`ps -e | grep pserve`
+    if [[ "$status" == "" ]]; then status=" (None)"; fi
+    echo ""
+    echo "ps -e | grep pserve :"
+    echo -e "$status"
+}
+
+function start {
+    port=$1
+    $vbin/pserve $ini \
+            --daemon \
+            --pid-file=pserve_${port}.pid \
+	    http_port=${port} 1>/dev/null \
+	&& echo " - Process started on port $port" \
+            || ( echo " - ERROR: Process for port $port did not start" \
+		       && echo "Perhaps a 'pserve' process is already running on that port?" \
+		       && exit 1 )
+    
+}
+
+function stop {
+    port=$1
+    $vbin/pserve --stop-daemon \
+	    --pid-file=pserve_${port}.pid 1>/dev/null \
+	&& echo " - Process on port $port stopped" \
+	|| ( echo    " - ERROR: Process on port $port did not stop (or did not exist)" \
+		   && echo "     Try \"\$ ps -e | grep $port\" to see if it is actually running?" \
+		   && exit 1 )
+    
+}
+
+function build_db {
+    $vbin/python $appname/scripts/initializedb.py $ini || exit 1
+}
+    
+fun="error"
+    
+case $1 in
+    "start" ) fun="start";;
+    "stop"  ) fun="stop";;
+    "build" ) fun="build";;
+
+    *       ) helptext $0; exit 1;;
+esac
+
+if [ ! -d $sandbox ]
+then
+    echo "The sandbox environment hasn't been set up yet."
+    echo "You must run './sandbox-init' before any of these"
+    echo "operations can be performed."
+    exit 1
+fi
+
+case $fun in
+    "start" ) echo "Starting $appname server processes ..." && for_ports "start" || exit 1;;
+    "stop"  ) echo "Stopping $appname server processes ..." && for_ports "stop"  || exit 1;;
+    "build" ) echo "Building database at $datadir/$dbfile ..." && build_db       || exit 1;;
+    
+    *       ) exit 1;;
+esac
+
+exit 0
