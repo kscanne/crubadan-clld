@@ -41,7 +41,7 @@ banner "Creating sandboxed python installation in $sandbox ..."
 virtualenv --python=$python $sandbox || exit 1
 
 banner "Installing clld package into sandbox ..."
-$sandbox/bin/easy_install clld || exit 1
+$sandbox/bin/easy_install clld==0.33 || exit 1
 
 banner "Installing $appname and deps into sandbox ..."
 $vbin/python setup.py develop || exit 1

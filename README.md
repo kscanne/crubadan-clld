@@ -32,10 +32,10 @@ create one for that purpose if you don't have one.
 The main data directory, ```/data/crubadan-clld``` must be in place
 and read/writable for the clld server user from the last step.
 
-You must also create the ```/files```, ```/metadata```, and
-```/olac.xml``` files and directories and fill them.  This should be
-all taken care of by the scripts that run the core An Crúbadán
-services.
+In the main data directory, you must also create the ```files/```,
+```metadata/```, and ```olac/olac.xml``` files and directories and
+fill them (this should be all taken care of by the scripts that run
+the core An Crúbadán services).
 
 ### Server Setup
 
@@ -69,9 +69,8 @@ are meant to be installed into a local sandbox with one command:
 
     ~/crubadan_clld $ ./sandbox-init
 
-This sets up a sandboxed python installation in
-```crubadan_clld/.venv```.  Commands given to ```./service-control```
-will use this behind the scenes.
+This sets up a sandboxed python installation in ```.venv```.  Commands
+given to ```./service-control``` will use this behind the scenes.
 
 #### Build the Database
 
