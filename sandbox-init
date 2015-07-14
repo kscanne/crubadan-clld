@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ ! -f ./script-vars ]; then
     echo "You're probably in the wrong directory."
