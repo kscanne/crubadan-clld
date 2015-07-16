@@ -30,7 +30,7 @@ def main(global_config, **settings):
 
     config.register_menu(
         ('dataset', partial(menu_item, 'dataset', label='Home')),
-        ('writingsystems', partial(menu_item, 'writingsystems',
+        ('languages', partial(menu_item, 'languages',
                                     label='Downloads')),
         ('apps', partial(menu_item, 'apps', label='Applications')),
         ('acks', partial(menu_item, 'acks', label='Acknowledgements'))
