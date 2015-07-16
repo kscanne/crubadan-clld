@@ -15,6 +15,8 @@ import sys
 import codecs
 from path import Path
 
+from coords import coords
+
 
 rootDataDir = '/data/crubadan'
 rootClldDir = '/data/crubadan-clld'
@@ -72,15 +74,23 @@ def fillTable(dbsession):
             # os.system('mv ' + z + ' ' + rootClldDir + '/files/' + z)
             # os.system('rm -r ' + lang)
 
+            if dic[u'country'] in coords:
+                (lati,longi) = coords[dic[u'country']]
+            else:
+                (lati,longi) = (None,None)
+
             # Fill the database model
             ws = models.WritingSystem(
 
                 # System stuff
-                pk = lang,
+                # pk = lang,
                 id = lang,
                 jsondata = dic,
                 name = dic[u'name_english'],
                 description = dic[u'classification'],
+
+                latitude = lati,
+                longitude = longi,
 
                 # Main data file
                 eng_name = dic[u'name_english'],

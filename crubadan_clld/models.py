@@ -32,9 +32,9 @@ import os
 # specialized common mapper classes
 #-----------------------------------------------------------------------------
 
-@implementer(IWritingSystem)
-class WritingSystem(Base, IdNameDescriptionMixin, HasFilesMixin):
-    pk = Column(String, primary_key=True)
+@implementer(interfaces.ILanguage)
+class WritingSystem(CustomModelMixin, Language, IdNameDescriptionMixin, HasFilesMixin):
+    pk = Column(String, ForeignKey('language.pk'), primary_key=True)
     eng_name = Column(String)
     native_name = Column(String)
     bcp47 = Column(String)
