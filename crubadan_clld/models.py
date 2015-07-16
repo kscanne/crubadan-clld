@@ -23,7 +23,6 @@ from clld.db.models.common import (
 
 from crubadan_clld.interfaces import (
     IWritingSystem,
-    IWritingSystem_files,
 )
 
 import os
@@ -46,10 +45,3 @@ class WritingSystem(CustomModelMixin, Language):
     ling_classification = Column(String)
     ethnologue_name = Column(String)
     glottolog_name = Column(String)
-
-@implementer(IWritingSystem_files)
-class WritingSystem_files(Base, FilesMixin):
-    pk = Column(String, primary_key=True)
-    
-    def relpath(self):
-        return str(self.id) + '.zip'
