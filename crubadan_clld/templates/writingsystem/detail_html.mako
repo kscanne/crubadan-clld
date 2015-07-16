@@ -117,7 +117,17 @@ ${opt_link( u'm_wikipedia_link' , ctx.jsondata[u'name_english'] + u' Wikipedia' 
 ${opt_link( u'm_tweets_link'    , ctx.jsondata[u'name_english'] + u' Tweets (Indigenous Tweets)' )}
 ${opt_link( u'm_blogs_link'     , ctx.jsondata[u'name_english'] + u' Blogs (Indigenous Blogs)'   )}
 ${opt_link( u'm_bible_link'     , u'Bible Translations'                                          )}
-${opt_link( u'm_sample_link'    , u'Sample Text'  )}
+${opt_link( u'm_sample_link'    , u'Sample Text'                                                 )}
 ${opt_link( u'm_udhr_link'      , u'Universal Declaration of Human Rights'                       )}
 ${opt_link( u'm_jw_link'        , u'JW.org'                                                      )}
 
+<%def name="sidebar()">
+    ${util.codes()}
+    <div style="clear: right;"> </div>
+    % if ctx.latitude is not None:
+    <%util:well>
+        ${request.map.render()}
+        ${h.format_coordinates(ctx, wgs_link=False)}
+    </%util:well>
+    % endif
+</%def>
