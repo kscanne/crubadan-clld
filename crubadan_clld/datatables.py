@@ -26,6 +26,6 @@ def includeme(config):
     # pass
     config.register_datatable('writingsystems', WritingSystems)
 
-def includeme(config):
-    # pass
-    config.register_datatable('languages', WritingSystems)
+# def includeme(config):
+#     # pass
+#     config.register_datatable('languages', WritingSystems)

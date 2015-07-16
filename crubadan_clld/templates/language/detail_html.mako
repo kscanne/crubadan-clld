@@ -1,6 +1,6 @@
 <%inherit file="../crubadan_clld.mako"/>
 <%namespace name="util" file="../util.mako"/>
-<%! active_menu_item = "languages" %>
+<%! active_menu_item = "writingsystems" %>
 
 <%def name="dist_file_path()">
     ${request.static_url('/data/crubadan-clld/files/' + ctx.id + '.zip')}
