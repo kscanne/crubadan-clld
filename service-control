@@ -58,7 +58,27 @@ function stop {
     
 }
 
+function glotto_check {
+    if [ ! -f $glottoCSV ]; then
+	
+	if [ ! -d $glottodir ]; then
+	    mkdir $glottodir
+	fi
+	cd $glottodir
+	echo "Downloading Glottolog metadata ..."
+	echo ""
+	wget $glottoURL || exit 1
+	echo ""
+	echo "Unzipping Glottolog metadata in $glottodir ..."
+	echo ""
+	unzip *.zip || exit 1
+	cd -
+	echo ""
+    fi
+}
+
 function build_db {
+    glotto_check || exit 1
     $vbin/python $appname/scripts/initializedb.py $ini || exit 1
 }
     

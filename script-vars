@@ -2,10 +2,17 @@
 
 sandbox=".venv"
 vbin="$sandbox/bin"
-python="python2.7"
+
 ports="7011 7012"
 appname="crubadan_clld"
 ini="production.ini"
-deps="virtualenv python2.7"
+
+python="python2.7"
+deps="virtualenv $python wget"
+
 datadir="/data/crubadan-clld"
 dbfile="clld-db.sqlite"
+
+glottodir="$datadir/glottolog"
+glottoCSV="$glottodir/languoid.csv"
+glottoURL="http://glottolog.org/static/download/glottolog-languoid.csv.zip"
