@@ -4,6 +4,4 @@
 
 <h3>${_('Writing Systems')}</h3>
 
-${request.map.render()}
-
 ${ctx.render()}
