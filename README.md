@@ -14,6 +14,8 @@ This server depends on the following utilities:
 
 - git
 
+- wget
+
 - virtualenv (Ubuntu package: ```python-virtualenv```)
 
 - python2.7
@@ -72,7 +74,10 @@ are meant to be installed into a local sandbox with one command:
 This sets up a sandboxed python installation in ```.venv```.  Commands
 given to ```./service-control``` will use this behind the scenes.
 
-#### Build the Database
+
+## Operations
+
+#### Building (and re-building) the Database
 
 Before starting the server, build its database:
 
@@ -84,8 +89,6 @@ writable with your unprivileged server-user.
 This same command should be run any time there are updates to the data
 available in the project.  Doing so does **not** require a restart of
 the server processes.
-
-## Operations
 
 ### Starting the Server
 
@@ -126,3 +129,15 @@ before starting again.
     ~/crubadan_clld $ ./service-control build
     ~/crubadan_clld $ ./service-control start
 
+### Glottolog Data
+
+The metadata from [Glottolog](http://glottolog.org/meta/downloads)
+(used for the landing-page maps) is fetched only once; subsequent
+invocations of ```./service-control build``` will use the
+previously-downloaded csv file.
+
+If a new version of the Glottolog data is released, just remove the
+downloaded data and rebuild the database to update it.
+
+    ~/crubadan_clld $ rm -r /data/crubadan-clld/glottolog
+    ~/crubadan_clld $ ./service-control build
