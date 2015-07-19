@@ -59,12 +59,11 @@ function stop {
 }
 
 function glotto_check {
-    if [ ! -f $glottoCSV ]; then
-	
+    if [ ! -f $glottoCSV ]; then	
 	if [ ! -d $glottodir ]; then
-	    mkdir $glottodir
+	    mkdir $glottodir || exit 1
 	fi
-	cd $glottodir
+	cd $glottodir || exit 1
 	echo "Downloading Glottolog metadata ..."
 	echo ""
 	wget $glottoURL || exit 1
@@ -72,7 +71,7 @@ function glotto_check {
 	echo "Unzipping Glottolog metadata in $glottodir ..."
 	echo ""
 	unzip *.zip || exit 1
-	cd -
+	cd - || exit 1
 	echo ""
     fi
 }
