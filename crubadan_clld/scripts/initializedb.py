@@ -54,8 +54,8 @@ def fillTable(dbsession):
                 parseAdd(line,dic,'m_')
 
             # Assign lat/long IF they can be found
-            if dic[u'country'] in coords:
-                (lati,longi) = coords[dic[u'country']]
+            if (u'glottolog' in dic and dic[u'glottolog'] in coords):
+                (lati,longi) = coords[dic[u'glottolog']]
             else:
                 (lati,longi) = (None,None)
 
