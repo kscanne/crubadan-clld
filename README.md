@@ -77,7 +77,7 @@ given to ```./service-control``` will use this behind the scenes.
 
 ## Operations
 
-#### Building (and re-building) the Database
+### Building (and re-building) the Database
 
 Before starting the server, build its database:
 
