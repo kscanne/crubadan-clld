@@ -8,11 +8,14 @@ appname="crubadan_clld"
 ini="production.ini"
 
 python="python2.7"
-deps="virtualenv $python wget"
+deps="unzip virtualenv $python wget"
 
 datadir="/data/crubadan-clld"
 dbfile="clld-db.sqlite"
 
 glottodir="$datadir/glottolog"
 glottoCSV="$glottodir/languoid.csv"
-glottoURL="http://glottolog.org/static/download/glottolog-languoid.csv.zip"
+
+# Updating this value to a new Glottolog version will likely require
+# editing the index values in 'crubadan_clld/scripts/coords.py'
+glottoURL="http://glottolog.org/static/download/2.5/glottolog-languoid.csv.zip"

@@ -14,6 +14,8 @@ This server depends on the following utilities:
 
 - git
 
+- unzip
+
 - wget
 
 - virtualenv (Ubuntu package: ```python-virtualenv```)
