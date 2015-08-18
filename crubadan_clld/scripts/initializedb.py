@@ -15,6 +15,8 @@ import sys
 import codecs
 from path import Path
 
+from coords import coords
+
 
 rootDataDir = '/data/crubadan'
 rootClldDir = '/data/crubadan-clld'
@@ -51,36 +53,24 @@ def fillTable(dbsession):
             for line in fm:
                 parseAdd(line,dic,'m_')
 
-            # Add the path to the (not-yet-existant) dist zipfile to
-            # the database
-            dfile = models.WritingSystem_files(
-                pk = lang,
-                id = lang,
-                name = lang,
-                description = lang,
-            )
-
-            # Create the dist zipfile and store it in the right place
-            z = lang + '.zip'
-            # os.system('mkdir ' + lang)
-            # os.system('cp doc/zip_file_LICENSE ' + lang + '/LICENSE')
-            # for (sysFile,zipFile) in packageFiles:
-            #     qSysFile = rootDataDir + '/' + lang + '/' + sysFile
-            #     qZipFile = lang + '/' + lang + '-' + zipFile
-            #     os.system('cp ' + qSysFile + ' ' + qZipFile)
-            # os.system('zip -qr ' + z + ' ' + lang)
-            # os.system('mv ' + z + ' ' + rootClldDir + '/files/' + z)
-            # os.system('rm -r ' + lang)
+            # Assign lat/long IF they can be found
+            if (u'glottolog' in dic and dic[u'glottolog'] in coords):
+                (lati,longi) = coords[dic[u'glottolog']]
+            else:
+                (lati,longi) = (None,None)
 
             # Fill the database model
             ws = models.WritingSystem(
 
                 # System stuff
-                pk = lang,
                 id = lang,
                 jsondata = dic,
                 name = dic[u'name_english'],
                 description = dic[u'classification'],
+
+                # For the maps
+                latitude = lati,
+                longitude = longi,
 
                 # Main data file
                 eng_name = dic[u'name_english'],
@@ -96,11 +86,10 @@ def fillTable(dbsession):
                 glottolog_name = dic[u'glottolog'],
             )
 
-            dfile.object = ws
-            
-            dbsession.add(dfile)
+            # Add it to the database
             dbsession.add(ws)
-    
+
+            # Let the user know it's working
             print 'Added ' + lang + ' ...'
             c += 1
 
@@ -140,32 +129,6 @@ def main(args):
     editor = data.add(common.Contributor, "Kevin Scannell", id="Kevin Scannell", name="Kevin Scannell", email="kscanne@gmail.com")
     common.Editor(dataset=dataset, contributor=editor, ord=0)
     DBSession.flush()
-    
-
-## An example dataset declaration from http://sails.clld.org/
-##
-# 
-#  dataset = common.Dataset(
-#      id="SAILS",
-#      name='SAILS Online',
-#      publisher_name="Max Planck Institute for Evolutionary Anthropology",
-#      publisher_place="Leipzig",
-#      publisher_url="http://www.eva.mpg.de",
-#      description="Dataset on Typological Features for South American Languages, collected 2009-2013 in the Traces of Contact Project (ERC Advanced Grant 230310) awarded to Pieter Muysken, Radboud Universiteit, Nijmegen, the Netherlands.",
-#      domain='sails.clld.org',
-#      published=date(2014, 2, 20),
-#      contact='harald.hammarstroem@mpi.nl',
-#      license='http://creativecommons.org/licenses/by-nc-nd/2.0/de/deed.en',
-#      jsondata={
-#          'license_icon': 'http://wals.info/static/images/cc_by_nc_nd.png',
-#          'license_name': 'Creative Commons Attribution-NonCommercial-NoDerivs 2.0 Germany'})
-#  DBSession.add(dataset)
-#  DBSession.flush()
-# 
-#  editor = data.add(common.Contributor, "Harald Hammarstrom", id="Harald Hammarstrom", name="Harald Hammarstrom", email = "harald.hammarstroem@mpi.nl")
-#  common.Editor(dataset=dataset, contributor=editor, ord=0)
-#  DBSession.flush()
-#  
 
     fillTable(DBSession)
 

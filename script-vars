@@ -2,10 +2,20 @@
 
 sandbox=".venv"
 vbin="$sandbox/bin"
-python="python2.7"
+
 ports="7011 7012"
 appname="crubadan_clld"
 ini="production.ini"
-deps="virtualenv python2.7"
+
+python="python2.7"
+deps="unzip virtualenv $python wget"
+
 datadir="/data/crubadan-clld"
 dbfile="clld-db.sqlite"
+
+glottodir="$datadir/glottolog"
+glottoCSV="$glottodir/languoid.csv"
+
+# Updating this value to a new Glottolog version will likely require
+# editing the index values in 'crubadan_clld/scripts/coords.py'
+glottoURL="http://glottolog.org/static/download/2.5/glottolog-languoid.csv.zip"
