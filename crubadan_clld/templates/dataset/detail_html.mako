@@ -54,15 +54,15 @@ corpora on the <a href="applications">Applications Page</a>.
 href="http://cental.fltr.ucl.ac.be/wac3/">WAC3 conference</a> in
 Louvain-la-Neuve, Belgium in September of 2007.  Here is the
 conference paper, which is the one we'd ask you to cite if you make
-use of this work: <a href="http://borel.slu.edu/pub/wac3.pdf">The
+use of this work: <a href="http://cs.slu.edu/~scannell/pub/wac3.pdf">The
 Crúbadán Project: Corpus building for under-resourced languages</a>.
 I am grateful to the organizers Cédrick Fairon, Adam Kilgarriff, and
 Gilles-Maurice de Schryver for the invitation and to the Université
 Catholique de Louvain for financial support that made the trip
 possible.  You can read the slides from my <a
-href="http://borel.slu.edu/pub/wac3slides.pdf">main talk</a> and also
+href="http://cs.slu.edu/~scannell/pub/wac3slides.pdf">main talk</a> and also
 some remarks I made during the WAC <a
-href="http://borel.slu.edu/pub/wacpanel.pdf">panel discussion</a>.
+href="http://cs.slu.edu/~scannell/pub/wacpanel.pdf">panel discussion</a>.
 </p>
 
 <p> The word <i lang="ga">crúbadán</i> means literally "crawler" in
@@ -70,8 +70,8 @@ Irish, but with the additional (appropriate in this context)
 connotation of unwanted or clumsy "pawing", from the root <i
 lang="ga">crúb</i> ("paw").  Several people have asked me how it is
 pronounced - you can now <a
-href="http://borel.slu.edu/crubadan/crubadan.mp3">listen to the
+href="http://cs.slu.edu/~scannell/pub/crubadan.mp3">listen to the
 word</a> as it's spoken by the wonderful Irish speech synthesizer <a
-href="http://www.abair.tcd.ie/index.php">abair.ie</a>.  </p>
+href="http://www.abair.tcd.ie/">abair.ie</a>.  </p>
 
 </div>

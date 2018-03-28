@@ -9,7 +9,7 @@
 <p>
 The 100 million+ words of Irish downloaded by the crawler have been
 instrumental in the development of
-my grammar checker <a href="http://borel.slu.edu/gramadoir/index.html">An Gramadóir</a>,
+my grammar checker <a href="https://cadhan.com/gramadoir/">An Gramadóir</a>,
 and many other NLP applications for Irish.
 Other language groups have use the Crúbadán data for developing grammar checkers, including for Afrikaans (Petri Jooste), Breton (Thierry Vignaud), Cornish (Edi Werner), Occitan (Bruno Gallart), Walon (Pablo Saratxaga)
 </p>
@@ -105,7 +105,7 @@ spell checking packages:
 <li><i><a href="http://ftp.gnu.org/gnu/aspell/dict/fy/">aspell-fy</a></i>,
 <i><a href="http://wiki.services.openoffice.org/wiki/Dictionaries">hunspell-fy</a></i> (Frisian).  With Eeltje de Vries.</li>
 <li><i><a href="http://ftp.gnu.org/gnu/aspell/dict/ga/">aspell-ga</a></i>,
-<i><a href="http://borel.slu.edu/ispell/sios.html">ispell-ga</a></i>,
+<i><a href="https://cadhan.com/ispell/">ispell-ga</a></i>,
 <i><a href="http://extensions.services.openoffice.org/en/project/focloiri-gaeilge">hunspell-ga</a></i>,
 <i><a href="https://addons.mozilla.org/en-US/firefox/addon/3090/">Mozilla</a></i>
 (Irish).</li>
